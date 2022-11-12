@@ -16,6 +16,7 @@ mkdir /var/lib/mysql
 
 # the process /usr/libexec/mariadb-prepare-db-dir could not be executed and
 # failed so we have to do it mannually in order to start the db server
+# Ref link https://mariadb.com/kb/en/public-questions-the-process-usrlibexecmariadb-prepare-db-dir-could-not-be-/
 # in order to start the db server run the command 
 
 sudo /usr/libexec/mariadb-prepare-db-dir
