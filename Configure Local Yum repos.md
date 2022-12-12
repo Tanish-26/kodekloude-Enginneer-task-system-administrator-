@@ -27,6 +27,6 @@ sudo yum update
 
 sudo yum repolist 
 
-# enabling and using nre repo that was created
+# enabling and using new repo that was created and installing wget using that repo
 sudo yum install -y --enablerepo="epel_local" wget
 ```
