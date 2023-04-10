@@ -9,8 +9,8 @@ systemctl enable postgresql && systemctl start postgresql && systemctl status po
 # configure the database 
 sudo -u postgres psql
 CREATE USER kodekloud_top WITH ENCRYPTED PASSWORD''; 
-CREATE DATABASE kodekloud_db6 
-GRANT ALL PRIVILEGES ON DATABASE kodekloud_db9 TO kodekloud_rin ;
+CREATE DATABASE kodekloud_db6 ;
+GRANT ALL PRIVILEGES ON DATABASE kodekloud_db6 TO kodekloud_top ;
 exit
 
 # implimenting changes in config file of the db
