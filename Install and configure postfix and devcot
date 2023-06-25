@@ -1,0 +1,54 @@
+sudo su -
+yum install postfix -y
+vi /etc/postfix/main.cf
+   ------> myhostname = stmail01.stratos.xfusioncorp.com
+   ------> mydomain = stratos.xfusioncorp.com
+   ------> myorigen ## unblock this statement
+   ------> inet_interfaces = all ## unblock this statement
+   ------> inet_interfaces = localhost ## block this statement
+   ------> mydestintion = $myhostname, localhost.@mydomain, localhost, $mydomain 
+   ------> mynetworks = 172.16.238.0/24, 127.0.0.0/8
+   ------> home_mailbox = Maildir/ 
+   :wq
+systemctl start postfix
+systemctl status postfix
+
+useradd (username)
+passwd (username)
+cat /etc/passwd | grep (username)
+ll /home/(username)
+telnet stmail01 25
+	EHLO localhost
+	mail from:mark@stratos.xfusioncorp.com
+	rcpt to:mark@stratos.xfusioncorp.com
+	DATA
+	test mail
+	quit
+
+mailq
+su - (username)
+	mailq
+	ll
+	cat /new/16......
+	exit
+yum install dovecot -y 
+vi /etc/dovecot/dovecot.conf
+	protocols = imap pop3 lmtp
+vi /etc/dovecot/conf.d/10-mail.conf
+	mail_location = maildir:~/Maildir
+vi /etc/dovecot/conf.d/10-auth.conf
+    diable_plaintext_auth = yes
+    auth_machanisms = plain login 
+vi /etc/dovecot/conf.d/10-master.conf
+	service auth 
+	user = postfix 
+	group = postfix 
+systemctl start dovecot 
+systemctl status dovecot
+
+telnet stmail01 110
+	user (username)
+	pass (password)
+	retr 1
+	quit
+ 
